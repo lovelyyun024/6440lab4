@@ -30,7 +30,7 @@ export class StudentCodeService {
     const queryStr = `MedicationRequest?patient=${client.patient.id}`;
     // flat: true will return a flat array of the resources instead of bundle.
     return from<any[]>(
-      client.request(queryStr, { pageLimit: 0, flat: true })
+      client.request(queryStr, { flat: true })
     );
 
 
