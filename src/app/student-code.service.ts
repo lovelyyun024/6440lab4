@@ -29,11 +29,9 @@ export class StudentCodeService {
     // return of([]); // STUDENT TODO: Remove me.
     const queryStr = `MedicationRequest?patient=${client.patient.id}`;
     // flat: true will return a flat array of the resources instead of bundle.
-    return client.request(queryStr, { pageLimit: 0, flat: true })
-      .catch(error => {
-        // console.error('Failed to retrieve medication requests:', error);
-        throw error;
-      });
+    return from<any[]>(
+      client.request(queryStr, { pageLimit: 0, flat: true })
+    );
 
 
   }
