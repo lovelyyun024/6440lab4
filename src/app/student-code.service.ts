@@ -19,7 +19,7 @@ export class StudentCodeService {
 
   exercise_0_testScopes(): string {
     // Add the additional two scopes here.
-    return 'launch profile openid online_access patient/Patient.read';
+    return 'launch profile openid online_access patient/Patient.read patient/Observation.read patient/MedicationRequest.*';
   }
 
   exercise_1_searchMedicationRequests(client): Observable<any> {
