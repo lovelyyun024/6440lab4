@@ -62,6 +62,27 @@ export class StudentCodeService {
   }
 
   exercise_3_createMedicationRequest(client, medicationName: string): Observable<any> {
-    return of({}); // STUDENT TODO: Remove me.
+    // return of({}); // STUDENT TODO: Remove me.
+    // resourceType,
+    // status (should be set to "draft")
+    // intent (should be set to "order")
+    // subject (should be a reference to the current patient)
+    // medicationCodeableConcept.text (should be set to the string passed in by the form)
+    // DO NOT SET ANY OTHER VALUES IN THIS FIELD, ONLY TEXT!
+    const payload = {
+      resourceType: 'MedicationRequest',
+      status: 'draft',
+      intent: 'order',
+      subject: { reference: `Patient/${client.patient.id}` },
+      medicationCodeableConcept: { text: medicationName }
+    };
+ 
+    return from<any[]>(
+      client.create(payload).then((created: any) => [created])
+      .catch(error => {
+        // console.error('Failed to create medication requests:', error);
+        throw error;
+      })
+    );
   }
 }
