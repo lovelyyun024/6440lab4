@@ -31,7 +31,7 @@ export class StudentCodeService {
     // flat: true will return a flat array of the resources instead of bundle.
     return client.request(queryStr, { pageLimit: 0, flat: true })
       .catch(error => {
-        console.error('Failed to retrieve medication requests:', error);
+        // console.error('Failed to retrieve medication requests:', error);
         throw error;
       });
 
@@ -46,7 +46,7 @@ export class StudentCodeService {
     return client.update(updatedStr )
       .then((saved: any) => [saved])
       .catch(error => {
-        console.error('Failed to update medication request:', error);
+        // console.error('Failed to update medication request:', error);
         throw error;
       });
   }
