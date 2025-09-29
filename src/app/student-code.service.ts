@@ -31,7 +31,7 @@ export class StudentCodeService {
     // flat: true will return a flat array of the resources instead of bundle.
     return client.request(queryStr, { pageLimit: 0, flat: true })
       .catch(error => {
-        console.error('Failed to get medication requests:', error);
+        console.error('Failed to retrieve medication requests:', error);
         throw error;
       });
 
@@ -40,7 +40,15 @@ export class StudentCodeService {
 
   // http://docs.smarthealthit.org/client-js/client.html
   exercise_2_updateMedicationRequest(client, resource: any, status: string): Observable<any> {
-    return of({}); // STUDENT TODO: Remove me.
+    // return of({}); // STUDENT TODO: Remove me.
+    const updated = { ...resource, status: status };
+  
+    return client.update(updated)
+      .then((saved: any) => [saved])
+      .catch(error => {
+        console.error('Failed to update medication request:', error);
+        throw error;
+      });
   }
 
   exercise_3_createMedicationRequest(client, medicationName: string): Observable<any> {
