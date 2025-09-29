@@ -32,7 +32,7 @@ export class StudentCodeService {
     return from<any[]>(
       client.request(queryStr, { flat: true })
     .catch(error => {
-      console.error('Failed to get medication requests:', error);
+      // console.error('Failed to get medication requests:', error);
       throw error;
     })
     );
@@ -42,10 +42,22 @@ export class StudentCodeService {
   // http://docs.smarthealthit.org/client-js/client.html
   exercise_2_updateMedicationRequest(client, resource: any, status: string): Observable<any> {
     // return of({}); // STUDENT TODO: Remove me.
-    const updatedStr: any = { ...resource, status };
+    const updatedStr = { ...resource, status: status };
   
+    // return client.update(updatedStr )
+    //   .then((saved: any) => [saved])
+    //   .catch(error => {
+    //     // console.error('Failed to update medication request:', error);
+    //     throw error;
+    //   });
+
     return from(
-      client.update(updatedStr).then((saved: any) => saved)
+      client.update(updatedStr )
+      .then((saved: any) => [saved])
+      .catch(error => {
+        // console.error('Failed to update medication request:', error);
+        throw error;
+      })
     );
   }
 
