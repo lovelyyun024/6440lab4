@@ -26,7 +26,16 @@ export class StudentCodeService {
     // STUDENT TODO: Write your code here.
 
     // The following line is a placeholder so the code compiles. Replace it with a return similar to the example.
-    return of([]); // STUDENT TODO: Remove me.
+    // return of([]); // STUDENT TODO: Remove me.
+    const queryStr = `MedicationRequest?patient=${client.patient.id}`;
+    // flat: true will return a flat array of the resources instead of bundle.
+    return client.request(queryStr, { pageLimit: 0, flat: true })
+      .catch(error => {
+        console.error('Failed to get medication requests:', error);
+        throw error;
+      });
+
+
   }
 
   // http://docs.smarthealthit.org/client-js/client.html
