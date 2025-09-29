@@ -31,6 +31,10 @@ export class StudentCodeService {
     // flat: true will return a flat array of the resources instead of bundle.
     return from<any[]>(
       client.request(queryStr, { flat: true })
+    .catch(error => {
+      console.error('Failed to get medication requests:', error);
+      throw error;
+    })
     );
 
 
