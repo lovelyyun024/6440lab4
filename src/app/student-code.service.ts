@@ -37,20 +37,16 @@ export class StudentCodeService {
     })
     );
 
-
   }
 
   // http://docs.smarthealthit.org/client-js/client.html
   exercise_2_updateMedicationRequest(client, resource: any, status: string): Observable<any> {
     // return of({}); // STUDENT TODO: Remove me.
-    const updatedStr = { ...resource, status: status };
+    const updatedStr: any = { ...resource, status };
   
-    return client.update(updatedStr )
-      .then((saved: any) => [saved])
-      .catch(error => {
-        // console.error('Failed to update medication request:', error);
-        throw error;
-      });
+    return from(
+      client.update(updatedStr).then((saved: any) => saved)
+    );
   }
 
   exercise_3_createMedicationRequest(client, medicationName: string): Observable<any> {
