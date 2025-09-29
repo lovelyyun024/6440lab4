@@ -43,13 +43,6 @@ export class StudentCodeService {
   exercise_2_updateMedicationRequest(client, resource: any, status: string): Observable<any> {
     // return of({}); // STUDENT TODO: Remove me.
     const updatedStr = { ...resource, status: status };
-  
-    // return client.update(updatedStr )
-    //   .then((saved: any) => [saved])
-    //   .catch(error => {
-    //     // console.error('Failed to update medication request:', error);
-    //     throw error;
-    //   });
 
     return from(
       client.update(updatedStr )
